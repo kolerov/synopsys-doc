@@ -1,4 +1,4 @@
-name: "Deploy doumentation for the toolchain"
+name: "Check doumentation for the toolchain"
 on:
   pull_request:
     branches:
