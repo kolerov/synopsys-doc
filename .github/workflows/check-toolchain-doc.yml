@@ -1,24 +1,17 @@
 name: "Deploy doumentation for the toolchain"
 on:
-  push:
+  pull_request:
     branches:
     - sources
 
 jobs:
-  docs-deploy:
+  docs-check:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
-      with:
-        ref: sources
-        path: sources
-    - uses: actions/checkout@v3
-      with:
-        ref: main
-        path: main
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
     - uses: ammaraskar/sphinx-action@0.4
       with:
-        docs-folder: "sources/toolchain/"
+        docs-folder: "toolchain/"
