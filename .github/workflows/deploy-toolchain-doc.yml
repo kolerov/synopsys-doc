@@ -16,9 +16,6 @@ jobs:
       with:
         ref: main
         path: main
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
     - uses: ammaraskar/sphinx-action@0.4
       with:
         docs-folder: "sources/toolchain/"
