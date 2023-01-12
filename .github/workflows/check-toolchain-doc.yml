@@ -1,0 +1,17 @@
+name: "Check doumentation for the toolchain"
+on:
+  pull_request:
+    branches:
+    - sources
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - uses: ammaraskar/sphinx-action@0.4
+      with:
+        docs-folder: "toolchain/"
