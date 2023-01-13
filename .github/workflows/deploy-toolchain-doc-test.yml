@@ -1,4 +1,4 @@
-name: "Deploy doumentation for the toolchain"
+name: "Deploy doumentation for the toolchain (test)"
 on:
   push:
     branches:
