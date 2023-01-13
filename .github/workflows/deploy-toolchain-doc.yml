@@ -1,4 +1,4 @@
-name: "Deploy doumentation for the toolchain (test)"
+name: "Deploy doumentation for the toolchain"
 on:
   push:
     paths:
@@ -9,6 +9,12 @@ on:
       - doc/**
 
   workflow_dispatch:
+    inputs:
+      perform_deploy:
+        description: 'Perform deploy to GitHub Pages branch'
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   doc-build-and-deploy:
@@ -25,7 +31,7 @@ jobs:
           docs-folder: doc
 
       - name: Deploy documentation
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.perform_deploy }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
