@@ -5,7 +5,7 @@
 
 .. only:: html
 
-   Weelcome to GNU Toolchain for ARC documentation!
+   Welcome to GNU Toolchain for ARC documentation!
    ===============================================
 
 .. toctree::
