@@ -1,25 +1,32 @@
-name: "Deploy doumentation for the toolchain"
+name: "Deploy doumentation for the toolchain (test)"
 on:
   push:
-    branches:
-    - main
+    paths:
+      - doc/**
+
+  pull_request:
+    paths:
+      - doc/**
+
   workflow_dispatch:
 
 jobs:
   doc-build-and-deploy:
+    name: Build and deploy documentation
     runs-on: ubuntu-22.04
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Build documentation
-      uses: ammaraskar/sphinx-action@0.4
-      with:
-        docs-folder: doc
+      - name: Build documentation
+        uses: ammaraskar/sphinx-action@0.4
+        with:
+          docs-folder: doc
 
-    - name: Deploy documentation
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages
-        folder: doc/_build/html
+      - name: Deploy documentation
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: doc/_build/html
